@@ -4,15 +4,13 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Profile } from '../../profiles/entities/profile.entity';
-import { Course } from '../../courses/entities/course.entity';
+import { Timetable } from '../../timetables/entities/timetable.entity';
 
 @Entity()
-export class Timetable extends BaseEntity {
+export class Course extends BaseEntity {
   // BASIC COLUMNS
   @PrimaryGeneratedColumn()
   id: number;
@@ -25,14 +23,18 @@ export class Timetable extends BaseEntity {
 
   // SPECIFIC COLUMNS
   @Column()
-  name: string;
+  courseCode: number;
+
+  @Column()
+  courseName: string;
+
+  @Column()
+  professor: string;
+
+  @Column()
+  credit: string;
 
   //RELATED COLUMNS
-  @ManyToOne(() => Profile, (profile) => profile.timetable)
-  profile: Profile;
-
-  @OneToMany(() => Course, (course) => course.timetable, {
-    eager: true,
-  })
-  courses: Course[];
+  @ManyToOne(() => Timetable, (timetable) => timetable.courses)
+  timetable: Timetable;
 }

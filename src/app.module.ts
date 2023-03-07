@@ -4,6 +4,12 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Account } from './modules/models/accounts/entities/account.entity';
+import { Chat } from './modules/models/chats/entities/chat.entity';
+import { Course } from './modules/models/courses/entities/course.entity';
+import { Friendship } from './modules/models/friendships/entities/friendship.entity';
+import { Profile } from './modules/models/profiles/entities/profile.entity';
+import { Timetable } from './modules/models/timetables/entities/timetable.entity';
 
 @Module({
   imports: [
@@ -23,7 +29,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DBNAME,
-      entities: [],
+      entities: [Account, Chat, Course, Friendship, Profile, Timetable],
       synchronize: true,
     }),
   ],
